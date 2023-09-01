@@ -71,10 +71,45 @@ We are now at the last part of step by step guide on how to simulate STM32 proje
 
 
 ## STM 32 CUBE PROGRAM :
+```
+NAME: SRI KARTHICKEYAN GANAPATHY
+REF NO:212222240102
+BRANCH:AIML
+```
+```
+#include "main.h"
+#include "stdbool.h"
+bool buttonstatus;
+void push_button();
 
-
-
-
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+int main(void)
+{
+	void push_button()
+	{
+		buttonstatus=HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
+		if(buttonstatus==0)
+		    {
+		    	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+		    	HAL_Delay(500);
+		    	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+		    	HAL_Delay(500);
+		    }
+		    else
+		    {
+		    	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+		    }
+	}
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+  while (1)
+  {
+    push_button();
+  }
+}
+```
 ## Output screen shots of proteus  :
 
 
