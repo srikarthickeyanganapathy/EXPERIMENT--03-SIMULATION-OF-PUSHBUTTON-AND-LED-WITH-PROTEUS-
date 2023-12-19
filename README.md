@@ -86,7 +86,15 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 int main(void)
 {
-	void push_button()
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+  while (1)
+  {
+    push_button();
+  }
+}
+void push_button()
 	{
 		buttonstatus=HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0);
 		if(buttonstatus==0)
@@ -101,14 +109,6 @@ int main(void)
 		    	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
 		    }
 	}
-  HAL_Init();
-  SystemClock_Config();
-  MX_GPIO_Init();
-  while (1)
-  {
-    push_button();
-  }
-}
 ```
 ## Output screen shots of proteus  :
 ### When LED is OFF:
